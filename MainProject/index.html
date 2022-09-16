@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        main{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(45deg, white, whitesmoke, silver);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+        #_card{
+            width: 350px;
+            height: 200px;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.207);
+            background-image: linear-gradient(45deg, rgb(155, 154, 154), white);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+        #_card>h1{
+            width: 100%;
+            height: 25%;
+            display: flex;
+            align-items: center;
+            padding-left: 5px;
+            color: rgba(0, 0, 0, 0.732);
+        }
+        #_card>h1:nth-of-type(1){
+            padding-left: 10px;
+            font-size: 25px;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+        #_card>h1:nth-of-type(1)>img{
+            width: 80%;
+            height: 90%;
+            object-fit: cover;
+            /* background-color: yellow; */
+        }
+        #_card>h1:nth-of-type(2){
+            font-size: 18px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: blue; */
+        } 
+        #_card>h1:nth-of-type(3){
+            font-size: 15px;
+            /* background-color: red; */
+        } 
+        #_card>h1:nth-of-type(4){
+            font-size: 12px;
+            /* background-color: rgba(0, 128, 0, 0.225); */
+        } 
+        #_cvvh{
+            width: 50%;
+            height: 100%;
+            /* background-color: orange; */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 10px;
+
+        }
+        #_mastercard{
+            width: 50%;
+            height: 100%;
+            /* background-color: black; */
+        }
+        #_mastercard>img{
+            width:100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+    
+    
+        #_input{
+            width: 600px;
+            height: 500px;
+            /* border-radius: 100px; */
+        }
+        #_input>label{
+            display: block;
+            width: 90%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 5px;
+            margin-top: 10px;
+            margin-left: 5%;
+        }
+        #_input>input{
+            width: 90%;
+            height: 30px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            padding-left: 5px;
+            margin-left: 5%;
+            border-radius: 4px;
+        }
+        #_input>div{
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #_input>div>button{
+            width: 100px;
+            height: 30px;
+            transition: .4s;
+        }
+        #_input>div>button:hover{
+            width: 90%;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <main>
+            <div id="_card">
+                <h1>
+                    <img src="DB.png" alt="">
+                </h1>
+                <h1 id="_cnh"></h1>
+                <h1 id="_fnh"></h1>
+                <h1>
+                    <div id="_cvvh"></div>
+                    <div id="_mastercard">
+                        <img src="ms.png" alt="">
+                    </div>
+                </h1>
+            </div>
+            <div id="_input">
+                
+                <label for="">Card Number : </label>
+                <input id="_cn" type="text" maxlength="16" placeholder="0000-0000-0000-0000">
+                
+                <label for="">Full Name :</label>
+                <input id="_fn" type="text" placeholder="Full Name">
+                
+                <label for="">CVV2 : </label>
+                <input id="_cvv" type="text" placeholder="12345">
+                
+                <label for="">Password :</label>
+                <input type="password" placeholder="*************">
+                
+                <div>
+                    <button>Log in</button>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script>
+
+    // card number 
+
+    document.getElementById('_cn').addEventListener('input', (e)=>{
+
+        let _num = e.target.value
+        
+        let x = e.target.value
+
+        x = x.substring(x.length - 1, x.length)
+        
+        let _cardnumber = document.getElementById('_cnh')
+        
+        _cardnumber.innerHTML += x 
+
+        if(_num.length == 4 || _num.length == 8 || _num.length == 12){
+            _cardnumber.innerHTML += ' '
+        }
+        if(_num.length == 16){
+            document.getElementById('_fn').focus()
+        }
+
+
+        // _cardnumber.innerHTML = _num
+
+        // if (_num.length == 4 || _num.length == 8 || _num.length == 12) {
+        //     _cardnumber.innerHTML = _num + ' - '
+        // }
+    })
+
+    // name 
+    
+    document.getElementById('_fn').addEventListener('input', (e)=>{
+        document.getElementById('_fnh').innerHTML = 'Mr.' + e.target.value
+    })
+    
+    // cvv 
+    
+    document.getElementById('_cvv').addEventListener('input', (e)=>{
+        document.getElementById('_cvvh').innerHTML = 'cvv'+ '  ' + e.target.value 
+    })
+    
+    </script>
+    </html>
